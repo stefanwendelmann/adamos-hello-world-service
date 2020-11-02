@@ -1,0 +1,39 @@
+{
+    "apiVersion": "v1",
+    "name": "my-microservice",
+    "version": "1.0.0",
+    "provider": {
+        "name": "New Company Ltd.",
+        "domain": "http://new-company.com",
+        "support": "support@new-company.com"
+    },
+    "isolation": "MULTI_TENANT",
+    "scale": "AUTO",
+    "resources": {
+        "cpu": "1",
+        "memory": "1G"
+    },
+    "requestedResources":{
+            "cpu": "100m",
+            "memory": "128Mi"
+    },
+    "requiredRoles": [
+        "ROLE_ALARM_READ"
+    ],
+    "livenessProbe": {
+        "httpGet": {
+            "path": "/health"
+        },
+        "initialDelaySeconds": 60,
+        "periodSeconds": 10
+    },
+    "readinessProbe": {
+        "httpGet": {
+            "path": "/health",
+            "port": 80
+
+        },
+        "initialDelaySeconds": 20,
+        "periodSeconds": 10
+    }
+}
